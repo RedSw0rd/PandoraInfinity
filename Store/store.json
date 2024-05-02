@@ -1,7 +1,7 @@
 [
         {
                 "Name":"Alpha",
-                "Category":"Alpha",
+                "Category":"PAYLOAD",
                 "Version":"1",
                 "RequireMin":"0",
                 "RequireMax":"0",
@@ -12,7 +12,18 @@
         },
         {
                 "Name":"Beta",
-                "Category":"Alpha",
+                "Category":"WORDLIST",
+                "Version":"1",
+                "RequireMin":"0",
+                "RequireMax":"0",
+                "URL":"store.pandora.redsword.io/PandoraInfinity/pandora-update-0.1.1.zip",
+                "Checksum":"",
+                "URLChecksum":"",
+                "Description":"Tool"
+        }
+        {
+                "Name":"Omega",
+                "Category":"EVILSTORE",
                 "Version":"1",
                 "RequireMin":"0",
                 "RequireMax":"0",
