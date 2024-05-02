@@ -1,5 +1,6 @@
 [
         {
+                "ID":"1",
                 "Name":"Alpha",
                 "Category":"PAYLOAD",
                 "Version":"1",
@@ -12,6 +13,7 @@
                 "Description":"Tool"
         },
         {
+                "ID":"2",
                 "Name":"Beta",
                 "Category":"WORDLIST",
                 "Version":"1",
@@ -24,6 +26,7 @@
                 "Description":"Tool"
         },
         {
+                "ID":"3",
                 "Name":"Omega",
                 "Category":"EVILSTORE",
                 "Version":"1",
