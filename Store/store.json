@@ -1,41 +1,19 @@
 [
         {
-                "ID":"1",
-                "Name":"Alpha",
-                "Category":"PAYLOAD",
-                "Version":"1",
-                "RequireMin":"0",
-                "RequireMax":"0",
-                "URL":"store.pandora.redsword.io/PandoraInfinity/pandora-update-0.1.1.zip",
-                "Checksum":"",
-                "URLChecksum":"",
-                "Size":"",
-                "Description":"Tool"
-        },
-        {
-                "ID":"2",
-                "Name":"Beta",
-                "Category":"WORDLIST",
-                "Version":"1",
-                "RequireMin":"0",
-                "RequireMax":"0",
-                "URL":"store.pandora.redsword.io/PandoraInfinity/pandora-update-0.1.1.zip",
-                "Checksum":"",
-                "URLChecksum":"",
-                "Size":"",
-                "Description":"Tool"
-        },
-        {
-                "ID":"3",
-                "Name":"Omega",
+                "UID":"0963f7bf62730e064f328b01d406f01b",
+                "Name":"privesc-essentials",
                 "Category":"EVILSTORE",
-                "Version":"1",
+                "MajorVersion":"0",
+                "MinorVersion":"0",
+                "BuildVersion":"1",
                 "RequireMin":"0",
                 "RequireMax":"0",
-                "URL":"store.pandora.redsword.io/PandoraInfinity/pandora-update-0.1.1.zip",
-                "Checksum":"",
+                "URL":"https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/Store/Evilstore/privesc-essentials-0.0.1.tar.gz",
+                "Checksum":"37657cab0f0c13ff68fe3c2c500c3da7",
                 "URLChecksum":"",
-                "Size":"",
-                "Description":"Tool"
+                "Size":"142225",
+                "SizeOnDisk":"817608",
+                "Description":"Essentials tools for privilege escalation on Linux and Windows",
+		"Author":"Ulysse@redsword.io"
         }
 ]
