@@ -9,11 +9,12 @@
                 "RequireMin":"0",
                 "RequireMax":"0",
                 "URL":"https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/Store/Evilstore/privesc-essentials-0.0.1.tar.gz",
-                "Checksum":"7bd654480c2bfcc36313869acb852e08666a8d3db42b2d16e999f4615198fbd76949c0ba8178ee36cdac747268d7e08039cb086279c72a87e51b7a9df770950b",
+                "Checksum":"8ac45ec4d4ac85b6ae59648d5cf540e82b979a81de41f3fff59a19c777371170e705bb0fe56a921c145fde604190020088e59f51a7fdd4150209176ce5366497",
                 "URLChecksum":"",
-                "Size":"142225",
-                "SizeOnDisk":"817608",
-                "Description":"Essentials tools for privilege escalation on Linux and Windows",
-		"Author":"Ulysse@redsword.io"
+                "Size":"142102",
+                "SizeOnDisk":"817363",
+                "Description":"Essentials tools for local privilege escalation on Linux and Windows",
+		"Builder":"Ulysse@redsword.io",
+		"Date":"1716604923"
         }
 ]
