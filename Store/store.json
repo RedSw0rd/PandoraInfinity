@@ -15,6 +15,7 @@
                 "SizeOnDisk":"20288539",
                 "Description":"Essentials tools for local privilege escalation on Linux",
 		"Builder":"Ulysse@redsword.io",
+		"Icon":"lpe",
 		"Date":"1716626021"
         },
         {
@@ -33,6 +34,7 @@
                 "SizeOnDisk":"728897",
                 "Description":"Penetration testing tool for searching through email in a Microsoft Exchange environment for specific terms",
 		"Builder":"Ulysse@redsword.io",
+		"Icon":"lpe",
 		"Date":"1720664521"
         },
         {
@@ -51,6 +53,7 @@
                 "SizeOnDisk":"1188053",
                 "Description":"Toolset for raw Kerberos interaction and abuses",
 		"Builder":"Ulysse@redsword.io",
+		"Icon":"lpe",
 		"Date":"1720668289"
         },
         {
@@ -69,6 +72,7 @@
                 "SizeOnDisk":"62755",
                 "Description":"Local Privilege Escalation tool",
 		"Builder":"Ulysse@redsword.io",
+		"Icon":"lpe",
 		"Date":"1720669048"
         },
         {
@@ -87,6 +91,7 @@
                 "SizeOnDisk":"190035",
                 "Description":"Local Privilege Escalation tool",
 		"Builder":"Ulysse@redsword.io",
+		"Icon":"lpe",
 		"Date":"1720669316"
         },
         {
@@ -105,6 +110,7 @@
                 "SizeOnDisk":"359023",
                 "Description":"Local Privilege Escalation tool",
 		"Builder":"Ulysse@redsword.io",
+		"Icon":"lpe",
 		"Date":"1720669954"
         },
         {
@@ -123,6 +129,7 @@
                 "SizeOnDisk":"121766",
                 "Description":"NTLM relay attack tool",
 		"Builder":"Ulysse@redsword.io",
+		"Icon":"lpe",
 		"Date":"1720669663"
         }
 ]
