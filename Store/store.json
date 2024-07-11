@@ -88,5 +88,23 @@
                 "Description":"Local Privilege Escalation tool",
 		"Builder":"Ulysse@redsword.io",
 		"Date":"1720669316"
+        },
+       {
+                "UID":"b611d4ab9a95d8e9a537cafb07fc022b",
+                "Name":"PetitPotam",
+                "Category":"EVILSTORE",
+                "MajorVersion":"0",
+                "MinorVersion":"0",
+                "BuildVersion":"1",
+                "RequireMin":"0",
+                "RequireMax":"0",
+                "URL":"https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/Store/Evilstore/petitpotam.tar.gz",
+                "Checksum":"e3341a6cf28849e33a17c90e92e365a341accbb1d650117b6777d54d7ff89d26db656388a55833fd296bcfcd749870e4337a9edf0d8296a3edd9b455c4f0661a",
+                "URLChecksum":"",
+                "Size":"61977",
+                "SizeOnDisk":"121766",
+                "Description":"NTLM relay attack tool",
+		"Builder":"Ulysse@redsword.io",
+		"Date":"1720669663"
         }
 ]
