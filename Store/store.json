@@ -52,5 +52,23 @@
                 "Description":"Toolset for raw Kerberos interaction and abuses",
 		"Builder":"Ulysse@redsword.io",
 		"Date":"1720668289"
+        },
+        {
+                "UID":"a4f7074c66fe5d4204cdcd0c551c7c27",
+                "Name":"PrintSpoofer",
+                "Category":"EVILSTORE",
+                "MajorVersion":"0",
+                "MinorVersion":"0",
+                "BuildVersion":"1",
+                "RequireMin":"0",
+                "RequireMax":"0",
+                "URL":"https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/Store/Evilstore/rubeus.tar.gz",
+                "Checksum":"19c8b655cdbb207fad80c9dcce025821fe7c2e7c9a40f75d211ed7c19c8bae445ddb37d21e0138acbbdbeecb019925a10cef1e383719072e8d175045c0e00063",
+                "URLChecksum":"",
+                "Size":"18885",
+                "SizeOnDisk":"62755",
+                "Description":"Local Privilege Escalation tool",
+		"Builder":"Ulysse@redsword.io",
+		"Date":"1720669048"
         }
 ]
