@@ -62,7 +62,7 @@
                 "BuildVersion":"1",
                 "RequireMin":"0",
                 "RequireMax":"0",
-                "URL":"https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/Store/Evilstore/rubeus.tar.gz",
+                "URL":"https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/Store/Evilstore/printspoofer.tar.gz",
                 "Checksum":"19c8b655cdbb207fad80c9dcce025821fe7c2e7c9a40f75d211ed7c19c8bae445ddb37d21e0138acbbdbeecb019925a10cef1e383719072e8d175045c0e00063",
                 "URLChecksum":"",
                 "Size":"18885",
@@ -70,5 +70,23 @@
                 "Description":"Local Privilege Escalation tool",
 		"Builder":"Ulysse@redsword.io",
 		"Date":"1720669048"
+        },
+        {
+                "UID":"83eef06f14cb3a9d3740688f41b509f2",
+                "Name":"GodPotato",
+                "Category":"EVILSTORE",
+                "MajorVersion":"0",
+                "MinorVersion":"0",
+                "BuildVersion":"1",
+                "RequireMin":"0",
+                "RequireMax":"0",
+                "URL":"https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/Store/Evilstore/godpotato.tar.gz",
+                "Checksum":"4371778026e716f636eb73f91891c808a4deff6a70ec3e78e413999b3a43aae2f15431953a9445484f4631649e53e1a6cf8f18e92ac8ceac6317869429641a68",
+                "URLChecksum":"",
+                "Size":"77685",
+                "SizeOnDisk":"190035",
+                "Description":"Local Privilege Escalation tool",
+		"Builder":"Ulysse@redsword.io",
+		"Date":"1720669316"
         }
 ]
