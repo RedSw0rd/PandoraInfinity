@@ -34,5 +34,23 @@
                 "Description":"Penetration testing tool for searching through email in a Microsoft Exchange environment for specific terms",
 		"Builder":"Ulysse@redsword.io",
 		"Date":"1720664521"
+        },
+        {
+                "UID":"3843009aa5b7b3540a7a87c83acc9d52",
+                "Name":"Rubeus",
+                "Category":"EVILSTORE",
+                "MajorVersion":"0",
+                "MinorVersion":"0",
+                "BuildVersion":"1",
+                "RequireMin":"0",
+                "RequireMax":"0",
+                "URL":"https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/Store/Evilstore/rubeus.tar.gz",
+                "Checksum":"bcb31f934341a58812be3d3b8010437efc13eb5f75d8b93067cc31402be4a1f569ef77e7bea6f1c7ba836aa515a868778b392b90ce5b25d10fe030452687237b",
+                "URLChecksum":"",
+                "Size":"438460",
+                "SizeOnDisk":"1188053",
+                "Description":"Toolset for raw Kerberos interaction and abuses",
+		"Builder":"Ulysse@redsword.io",
+		"Date":"1720668289"
         }
 ]
