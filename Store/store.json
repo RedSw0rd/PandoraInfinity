@@ -90,6 +90,24 @@
 		"Date":"1720669316"
         },
         {
+                "UID":"48902274ac2abe2bd7da6b9b02b40568",
+                "Name":"JuicyPotato",
+                "Category":"EVILSTORE",
+                "MajorVersion":"0",
+                "MinorVersion":"0",
+                "BuildVersion":"1",
+                "RequireMin":"0",
+                "RequireMax":"0",
+                "URL":"https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/Store/Evilstore/godpotato.tar.gz",
+                "Checksum":"a7ddd3706de29bbccb1195706f71068e971424d8fd8bc272afa1778e86baf863aedaae5f0d5c405240dbfecd148274f0075756a42bb6cf592df8d5a4e03002d7",
+                "URLChecksum":"",
+                "Size":"173889",
+                "SizeOnDisk":"359023",
+                "Description":"Local Privilege Escalation tool",
+		"Builder":"Ulysse@redsword.io",
+		"Date":"1720669954"
+        },
+        {
                 "UID":"b611d4ab9a95d8e9a537cafb07fc022b",
                 "Name":"PetitPotam",
                 "Category":"EVILSTORE",
