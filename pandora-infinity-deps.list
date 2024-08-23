@@ -3,6 +3,11 @@ cmake
 build-essential
 automake 
 autoconf 
+autogen
+autopoint
+binutils-mingw-w64
+g++
+g++-mingw-w64-x86-64
 pkg-config 
 libtool
 libpcap-dev
@@ -26,8 +31,10 @@ libnl-genl-3-dev
 libssl-dev
 ffmpeg
 sqlite3
+geoipupdate
 git
 dos2unix 
+tree
 unzip
 conntrack 
 cutycapt
@@ -48,9 +55,7 @@ reaver
 hcxtools
 rtl-sdr
 rtl-433
-dump1090-mutability
 kalibrate-rtl
-gr-gsm
 ubertooth-firmware
 ubertooth
 crackle
@@ -63,6 +68,8 @@ arp-scan
 nbtscan
 responder
 evil-ssdp
+polenum
+evil-winrm
 dsniff
 tcpdump
 tshark
