@@ -36,6 +36,7 @@ git
 dos2unix 
 tree
 unzip
+colorized-logs
 conntrack 
 cutycapt
 xvfb
