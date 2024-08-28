@@ -43,6 +43,7 @@ conntrack
 cutycapt
 xvfb
 pktstat
+tcpick
 iotop
 dnsmasq
 macchanger
