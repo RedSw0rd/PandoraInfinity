@@ -77,12 +77,14 @@ isr-evilgrade
 evil-ssdp
 polenum
 evil-winrm
+firewalk
 dsniff
 tcpdump
 tshark
 ssldump
 ngrep
 cdpr
+p0f
 sslsplit
 ferret-sidejack
 hamster-sidejack
@@ -101,6 +103,7 @@ urlcrazy
 joomscan
 dotdotpwn
 cupp
+smtp-user-enum
 msfpc
 framework2
 metasploit-framework
