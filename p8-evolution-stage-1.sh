@@ -6,17 +6,89 @@
 DEP_LIST_URL="https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/pandora-infinity-deps.list"
 PANDORA_ARCHIVE_URL="http://192.168.1.50/pandorainfinity/download/versions/latest/pandora-infinity-latest.tar.gz"
 PANDORA_CHECKSUM_URL="http://192.168.1.50/pandorainfinity/download/versions/latest/pandora-infinity-latest.sum"
-STATUS_OK="\r\t\t\t\t\t\t\t\t\t\t\t      [ \033[0;92mOK\033[0;37m ]"
-STATUS_KO="\r\t\t\t\t\t\t\t\t\t\t\t      [ \033[0;91mK0\033[0;37m ]"
 T=$(date +"%d%m%y-%s")
-LOGFILE="/root/p8-evolution-$T.log"
+LOGFILE="/root/p8-evolution-stage-1-$T.log"
+scriptVersion="0.1.0"
 
-# BANNER
-echo -e " \033[0;97m"
-base64 -d <<<"4paI4paI4paI4paI4paI4paI4pWXICDilojilojilojilojilojilZcg4paI4paI4paI4pWXICAg4paI4paI4pWX4paI4paI4paI4paI4paI4paI4pWXICDilojilojilojilojilojilojilZcg4paI4paI4paI4paI4paI4paI4pWXICDilojilojilojilojilojilZcgICAgIOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKVl+KWiOKWiOKWiOKWiOKWiOKWiOKWiOKVl+KWiOKWiOKWiOKWiOKWiOKWiOKVlyAg4paI4paI4paI4paI4paI4paI4pWXIArilojilojilZTilZDilZDilojilojilZfilojilojilZTilZDilZDilojilojilZfilojilojilojilojilZcgIOKWiOKWiOKVkeKWiOKWiOKVlOKVkOKVkOKWiOKWiOKVl+KWiOKWiOKVlOKVkOKVkOKVkOKWiOKWiOKVl+KWiOKWiOKVlOKVkOKVkOKWiOKWiOKVl+KWiOKWiOKVlOKVkOKVkOKWiOKWiOKVlyAgICDilZrilZDilZDilojilojilojilZTilZ3ilojilojilZTilZDilZDilZDilZDilZ3ilojilojilZTilZDilZDilojilojilZfilojilojilZTilZDilZDilZDilojilojilZcK4paI4paI4paI4paI4paI4paI4pWU4pWd4paI4paI4paI4paI4paI4paI4paI4pWR4paI4paI4pWU4paI4paI4pWXIOKWiOKWiOKVkeKWiOKWiOKVkSAg4paI4paI4pWR4paI4paI4pWRICAg4paI4paI4pWR4paI4paI4paI4paI4paI4paI4pWU4pWd4paI4paI4paI4paI4paI4paI4paI4pWRICAgICAg4paI4paI4paI4pWU4pWdIOKWiOKWiOKWiOKWiOKWiOKVlyAg4paI4paI4paI4paI4paI4paI4pWU4pWd4paI4paI4pWRICAg4paI4paI4pWRCuKWiOKWiOKVlOKVkOKVkOKVkOKVnSDilojilojilZTilZDilZDilojilojilZHilojilojilZHilZrilojilojilZfilojilojilZHilojilojilZEgIOKWiOKWiOKVkeKWiOKWiOKVkSAgIOKWiOKWiOKVkeKWiOKWiOKVlOKVkOKVkOKWiOKWiOKVl+KWiOKWiOKVlOKVkOKVkOKWiOKWiOKVkSAgICAg4paI4paI4paI4pWU4pWdICDilojilojilZTilZDilZDilZ0gIOKWiOKWiOKVlOKVkOKVkOKWiOKWiOKVl+KWiOKWiOKVkSAgIOKWiOKWiOKVkQrilojilojilZEgICAgIOKWiOKWiOKVkSAg4paI4paI4pWR4paI4paI4pWRIOKVmuKWiOKWiOKWiOKWiOKVkeKWiOKWiOKWiOKWiOKWiOKWiOKVlOKVneKVmuKWiOKWiOKWiOKWiOKWiOKWiOKVlOKVneKWiOKWiOKVkSAg4paI4paI4pWR4paI4paI4pWRICDilojilojilZEgICAg4paI4paI4paI4paI4paI4paI4paI4pWX4paI4paI4paI4paI4paI4paI4paI4pWX4paI4paI4pWRICDilojilojilZHilZrilojilojilojilojilojilojilZTilZ0K4pWa4pWQ4pWdICAgICDilZrilZDilZ0gIOKVmuKVkOKVneKVmuKVkOKVnSAg4pWa4pWQ4pWQ4pWQ4pWd4pWa4pWQ4pWQ4pWQ4pWQ4pWQ4pWdICDilZrilZDilZDilZDilZDilZDilZ0g4pWa4pWQ4pWdICDilZrilZDilZ3ilZrilZDilZ0gIOKVmuKVkOKVnSAgICDilZrilZDilZDilZDilZDilZDilZDilZ3ilZrilZDilZDilZDilZDilZDilZDilZ3ilZrilZDilZ0gIOKVmuKVkOKVnSDilZrilZDilZDilZDilZDilZDilZ0g"
-echo -e "\033[0;37m\n------------------------------------------------------------------------------------------------"
-echo -e "                             \033[0;92mE V O L U T I O N    P R O C E S S\033[0;37m"
-echo "------------------------------------------------------------------------------------------------"
+#
+reset="\033[0m";
+red='\033[0;31m'
+purple='\033[0;35m'
+lpurple='\033[1;35m'
+cyan='\033[0;36m'
+lightcyan='\033[1;36m'
+white='\033[1;37m'
+green='\033[0;92m'
+fgcyan="\033[38;5;51m";
+fgpurple1="\033[38;5;92m";
+fgpurple2="\033[38;5;13m";
+fgred="\033[38;5;9m";
+fggray="\033[38;5;240m";
+fglightgray="\033[38;5;245m";
+bgpurple="\033[48;5;93m";
+bgcyan="\033[48;5;51m";
+bgdark="\033[48;5;233m";
+
+STATUS_OK="\r\t\t\t\t\t\t\t\t\t\t\t\t     $white[$green OK $white]$textColor"
+STATUS_KO="\r\t\t\t\t\t\t\t\t\t\t\t\t     $white[$red K0 $white]$textColor"
+textColor="$fglightgray";
+borderColor="$fgcyan";
+insideBorderColor="$lpurple"
+plus="$borderColor|$insideBorderColor""+""$borderColor|$textColor"
+minus="$borderColor|$insideBorderColor""-""$borderColor|$textColor"
+sup="$borderColor|$insideBorderColor"">""$borderColor|$textColor"
+warn="$borderColor|$insideBorderColor""!""$borderColor|$textColor"
+err="$borderColor|$insideBorderColor""E""$borderColor|$textColor"
+
+echo -ne "$fgcyan""___________________________________________________________________________________________________________\n"
+echo -ne "$bgpurple                                                                                                           $reset\n"
+echo -ne "$bgpurple$fgcyan                                W E L C O M E    N E W   C H A L L E N G E R                               $reset\n"
+echo -ne "$bgpurple                                                                                                           $reset\n"
+echo ""
+echo ""
+echo -e "$purple  ______ _______ _______ ______  _______ ______  _______    _ _______ _______ _ _______ _ _______ _     _"
+echo -e "$lpurple (_____ (_______|_______|______)(_______|_____ \(_______)  | (_______|_______) (_______) (_______) |   | |"
+echo -e "  _____) )______ _     _ _     _ _     _ _____) )_______   | |_     _ _____  | |_     _| |   _   | |___| |"
+echo -e "$cyan |  ____/  ___  | |   | | |   | | |   | |  __  /|  ___  |  | | |   | |  ___) | | |   | | |  | |  |_____  |"
+echo -e " | |    | |   | | |   | | |__/ /| |___| | |  \ \| |   | |  | | |   | | |     | | |   | | |  | |   _____| |"
+echo -e "$lightcyan |_|    |_|   |_|_|   |_|_____/  \_____/|_|   \_|_|   |_|  |_|_|   |_|_|     |_|_|   |_|_|  |_|  (_______|"
+echo ""
+echo -ne "$fggray""                ____________________________________________________________________________\n"
+echo ""
+echo -e "                   $fggray[$cyan \033[4mP\033[24m""$fggray""roactive $cyan \033[4mH\033[24m""$fggray""acking $cyan \033[4mA\033[24m""$fggray""nd $cyan \033[4mN\033[24m""$fggray""etwork $cyan \033[4mT\033[24m""$fggray""actical $cyan \033[4mO\033[24m""$fggray""perations $cyan \033[4mM\033[24m""$fggray""anagement ]"
+echo ""
+echo ""
+echo ""
+echo -e "$fggray                                       .-=( Red|Sword - 2024 )=-."
+echo ""
+echo ""
+echo -ne "$fgpurple2""___________________________________________________________________________________________________________\n"
+echo -ne "$bgcyan                                                                                                           $reset\n"
+echo -ne "$bgcyan$fgpurple1                      \033[5m E V O L U T I O N    P R O C E S S U S   -   S T A G E   1\033[25m                          $reset\n"
+echo -ne "$bgcyan                                                                                                           $reset\n"
+echo -ne "$bgdark                                                                                                           $reset\n"
+echo -ne "$bgdark                                                                                                           $reset\n"
+echo -ne "$bgdark$fgred                                            *** DICLAIMER ***                                              $reset\n"
+echo -ne "$bgdark                                                                                                           $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| | This project is created for educational purposes and cannot be used for law violation or personal      $reset\n"
+echo -ne "$bgdark$fgcyan| | gain.                                                                                                  $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| | The author of this project is not responsible for any possible harm caused by the materials of this    $reset\n"
+echo -ne "$bgdark$fgcyan| | project.                                                                                               $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark                                                                                                           $reset\n"
+echo -ne "$bgdark$fggray""___________________________________________________________________________________________________________$reset\n"
+echo -e "$textColor"
+
+
+exit
+
 echo "$(date +"%d/%m/%y %H:%M:%S") PANDORA INFINITY - EVOLUTION PROCESS STARTED" > $LOGFILE
 
 # ROOT CHECK
@@ -112,5 +184,44 @@ then
 else
         echo -e $STATUS_KO
 fi
+
+
+
+##################################################################
+# END
+##################################################################
+
+echo -ne "$fgpurple2___________________________________________________________________________________________________________\n"
+echo -ne "$bgcyan                                                                                                           $reset\n"
+echo -ne "$bgcyan$fgpurple1                                  \033[5m S T A G E   1   C O M P L E T E D \033[25m                                      $reset\n"
+echo -ne "$bgcyan                                                                                                           $reset\n"
+
+echo -ne "$bgdark                                                                                                           $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| | CONGRAGULATION !                                                                                       $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| | You have successfully installted Pandora Infinity.                                                     $reset\n"
+echo -ne "$bgdark$fgcyan| | Read the online documentation on redsword.io for the post-installation actions.                        $reset\n"
+echo -ne "$bgdark$fgcyan| | Your are near the final steps.                                                                         $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| | Informations :                                                                                         $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| | URL      : https://<IP>:31415                                                                          $reset\n"
+echo -ne "$bgdark$fgcyan| | Login    :$fgred Commander                                                                                   $reset\n"
+echo -ne "$bgdark$fgcyan| | Password :$fgred PandoraInfinity2024                                                                         $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| | Welcome in the Red Squad !                                                                             $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| |$fgred REBOOT IS REQUIRED                                                                                     $reset\n"
+echo -ne "$bgdark$fgcyan| | Please enter the reboot command to restart the system.                                                 $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fggray""___________________________________________________________________________________________________________$reset\n"
+echo ""
+echo "|-| Code Over - Done"
 
 exit
