@@ -111,6 +111,7 @@ framework2
 metasploit-framework
 routersploit
 hydra
+crowbar
 dnschef
 gpsd
 gpsd-clients
