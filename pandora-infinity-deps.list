@@ -109,6 +109,7 @@ smtp-user-enum
 msfpc
 framework2
 metasploit-framework
+powershell-empire
 routersploit
 hydra
 crowbar
