@@ -18,6 +18,7 @@ php-curl
 php-xml
 libapache2-mod-php
 ruby-msfrpc-client
+python3-scapy
 python3-bluepy
 python3-pydbus
 python3-pcapy
@@ -113,3 +114,4 @@ dnschef
 gpsd
 gpsd-clients
 open-iscsi
+proxychains4
