@@ -40,6 +40,7 @@ colorized-logs
 conntrack 
 cutycapt
 xvfb
+pktstat
 dnsmasq
 macchanger
 sshpass
