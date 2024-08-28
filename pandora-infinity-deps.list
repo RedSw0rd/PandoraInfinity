@@ -29,6 +29,7 @@ libbluetooth-dev
 libnl-3-dev
 libnl-genl-3-dev
 libssl-dev
+tor
 ffmpeg
 sqlite3
 geoipupdate
@@ -41,6 +42,7 @@ conntrack
 cutycapt
 xvfb
 pktstat
+iotop
 dnsmasq
 macchanger
 sshpass
@@ -65,10 +67,13 @@ spooftooph
 blue-hydra
 redfang
 nmap
+zmap
+scanssh
 amap
 arp-scan
 nbtscan
 responder
+isr-evilgrade
 evil-ssdp
 polenum
 evil-winrm
@@ -91,6 +96,11 @@ whatweb
 dirb
 sslyze
 httping
+httrack
+urlcrazy
+joomscan
+dotdotpwn
+cupp
 msfpc
 framework2
 metasploit-framework
