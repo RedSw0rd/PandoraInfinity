@@ -31,6 +31,7 @@ libnl-3-dev
 libnl-genl-3-dev
 libssl-dev
 tor
+tor-geoipdb
 ffmpeg
 sqlite3
 geoipupdate
