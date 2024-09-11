@@ -4,8 +4,9 @@
 ###################################################################
 # VAR
 DEP_LIST_URL="https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/pandora-infinity-deps.list"
-PANDORA_ARCHIVE_URL="http://192.168.1.50/pandorainfinity/download/versions/latest/pandora-latest.tar.gz"
-PANDORA_CHECKSUM_URL="http://192.168.1.50/pandorainfinity/download/versions/latest/pandora-latest.sum"
+PANDORA_ARCHIVE_URL="http://192.168.1.69/RedSword_dev/pandorainfinity/versions/pandora-latest.tar.gz"
+PANDORA_CHECKSUM_URL="http://192.168.1.69/RedSword_dev/pandorainfinity/versions/pandora-latest.sum"
+
 T=$(date +"%d%m%y-%s")
 LOGFILE="/root/p8-evolution-stage-2-$T.log"
 scriptVersion="0.1.0"
@@ -28,13 +29,18 @@ fglightgray="\033[38;5;245m";
 bgpurple="\033[48;5;93m";
 bgcyan="\033[48;5;51m";
 bgdark="\033[48;5;233m";
+grad1="\033[38;5;213m";
+grad2="\033[38;5;207m";
+grad3="\033[38;5;147m";
+grad4="\033[38;5;051m";
+grad5="\033[38;5;045m";
+grad6="\033[38;5;123m";
 
 STATUS_OK="\r\t\t\t\t\t\t\t\t\t\t\t\t     $white[$green OK $white]$textColor"
 STATUS_KO="\r\t\t\t\t\t\t\t\t\t\t\t\t     $white[$red K0 $white]$textColor"
 textColor="$fglightgray";
 borderColor="$fgcyan";
 insideBorderColor="$lpurple"
-
 plus="$borderColor|$insideBorderColor""+""$borderColor|$textColor"
 minus="$borderColor|$insideBorderColor""-""$borderColor|$textColor"
 sup="$borderColor|$insideBorderColor"">""$borderColor|$textColor"
@@ -47,12 +53,12 @@ echo -ne "$bgpurple$fgcyan                                W E L C O M E    N E W
 echo -ne "$bgpurple                                                                                                           $reset\n"
 echo ""
 echo ""
-echo -e "$purple  ______ _______ _______ ______  _______ ______  _______    _ _______ _______ _ _______ _ _______ _     _"
-echo -e "$lpurple (_____ (_______|_______|______)(_______|_____ \(_______)  | (_______|_______) (_______) (_______) |   | |"
-echo -e "  _____) )______ _     _ _     _ _     _ _____) )_______   | |_     _ _____  | |_     _| |   _   | |___| |"
-echo -e "$cyan |  ____/  ___  | |   | | |   | | |   | |  __  /|  ___  |  | | |   | |  ___) | | |   | | |  | |  |_____  |"
-echo -e " | |    | |   | | |   | | |__/ /| |___| | |  \ \| |   | |  | | |   | | |     | | |   | | |  | |   _____| |"
-echo -e "$lightcyan |_|    |_|   |_|_|   |_|_____/  \_____/|_|   \_|_|   |_|  |_|_|   |_|_|     |_|_|   |_|_|  |_|  (_______|"
+echo -e "$grad1  ______ _______ _______ ______  _______ ______  _______    _ _______ _______ _ _______ _ _______ _     _"
+echo -e "$grad2 (_____ (_______|_______|______)(_______|_____ \(_______)  | (_______|_______) (_______) (_______) |   | |"
+echo -e "$grad3  _____) )______ _     _ _     _ _     _ _____) )_______   | |_     _ _____  | |_     _| |   _   | |___| |"
+echo -e "$grad4 |  ____/  ___  | |   | | |   | | |   | |  __  /|  ___  |  | | |   | |  ___) | | |   | | |  | |  |_____  |"
+echo -e "$grad5 | |    | |   | | |   | | |__/ /| |___| | |  \ \| |   | |  | | |   | | |     | | |   | | |  | |   _____| |"
+echo -e "$grad6 |_|    |_|   |_|_|   |_|_____/  \_____/|_|   \_|_|   |_|  |_|_|   |_|_|     |_|_|   |_|_|  |_|  (_______|"
 echo ""
 echo -ne "$fggray""                ____________________________________________________________________________\n"
 echo ""
@@ -72,16 +78,20 @@ echo -ne "$bgdark                                                               
 echo -ne "$bgdark$fgred                                            *** DICLAIMER ***                                              $reset\n"
 echo -ne "$bgdark                                                                                                           $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| | This project is created for educational purposes and cannot be used for law violation or personal      $reset\n"
-echo -ne "$bgdark$fgcyan| | gain.                                                                                                  $reset\n"
+echo -ne "$bgdark$fgcyan| | This tool is provided for educational and testing purposes only and cannot be used for law violation   $reset\n"
+echo -ne "$bgdark$fgcyan| | or personal gain. Its use must comply with the laws and regulations in force in your country or        $reset\n"
+echo -ne "$bgdark$fgcyan| | region. The author and contributors of this project disclaim any liability for abusive or unlawful     $reset\n"
+echo -ne "$bgdark$fgcyan| | use thereof.                                                                                           $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| | The author of this project is not responsible for any possible harm caused by the materials of this    $reset\n"
-echo -ne "$bgdark$fgcyan| | project.                                                                                               $reset\n"
+echo -ne "$bgdark$fgcyan| | This software is provided \"as is\", without any warranty, express or implied, including but not         $reset\n"
+echo -ne "$bgdark$fgcyan| | limited to the warranties of merchantability or fitness for a particular purpose. In no event shall    $reset\n"
+echo -ne "$bgdark$fgcyan| | the authors or copyright holders be liable for any damages arising directly or indirectly from the     $reset\n"
+echo -ne "$bgdark$fgcyan| | use of this software or its inability to be used.                                                      $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| | The use of this tool is at your own risk. Make sure you have the necessary permissions before using    $reset\n"
+echo -ne "$bgdark$fgcyan| | it on systems that do not belong to you or for which you have not obtained explicit permission.        $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| | By using this tool, you acknowledge that you have read and agreed to the terms of this disclaimer.     $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
 echo -ne "$bgdark                                                                                                           $reset\n"
 echo -ne "$bgdark$fggray""___________________________________________________________________________________________________________$reset\n"
@@ -94,7 +104,7 @@ then
         exit 1
 fi
 
-echo -e "$plus Loading Stage 2 "
+echo -e "$plus Loading Stage 2 - Engine version : $scriptVersion"
 echo -ne "$plus Stage 2 Evolution processus started at "
 echo $(date +"%d/%m/%y %H:%M:%S")
 
@@ -133,6 +143,35 @@ then
         exit
 else
         echo -e "$STATUS_OK"
+fi
+
+
+###################################################################
+#
+###################################################################
+
+raspiPlatform=0
+echo -e "$sup Detecting plateform "
+if [[ -e /sys/firmware/devicetree/base/model ]]
+then
+        echo -e "$plus Raspberry Pi detected "
+        platform=$(cat /sys/firmware/devicetree/base/model)
+        echo -e "$plus $platform "
+
+        raspiPlatform=1
+
+elif [[ -e /sys/class/dmi/id/product_name ]]
+then
+        virt=$(dmidecode --string system-manufacturer)
+        if [ "$virt" == "QEMU" ]
+        then
+                echo -e "$plus Virtual machine powered by $virt "
+        fi
+
+        platform=$(cat /sys/class/dmi/id/product_name)
+        echo -e "$plus $platform "
+else
+        echo -e "$warn Plateform undetermined "
 fi
 
 
@@ -349,7 +388,7 @@ fi
 ##################################################################
 # SQLITE DATABASE
 ##################################################################
-echo -ne "$sup Installing DB "
+echo -ne "$sup Installing DB. Please wait "
 find /var/lib/pandora/sys/setup/config/sqlite/ -type f -name "*.php" -exec php -f {} \; >$LOGFILE 2>&1
 echo -e "$STATUS_OK"
 
@@ -435,6 +474,11 @@ chown -R www-data: /var/lib/pandora
 find /var/lib/pandora/sys/scripts/pandora -type f -name "*.sh" -exec chmod +x {} \;
 echo -e "$STATUS_OK"
 
+echo -ne "$sup Changing file mode "
+find /var/www/pandora -type d -exec chmod 0711 {} \;
+find /var/www/pandora -type f -exec chmod 0644 {} \;
+echo -e "$STATUS_OK"
+
 #echo -ne "$sup Disabling the Windows Manager (GUI) "
 #systemctl set-default multi-user.target > /dev/null 2>&1
 #echo -e $STATUS_OK
@@ -452,7 +496,6 @@ systemctl enable pandorad >> $LOGFILE 2>&1
 #systemctl unmask hostapd >> $LOGFILE 2>&1
 #systemctl enable hostapd >> $LOGFILE 2>&1
 echo -e "$STATUS_OK"
-
 
 
 ##################################################################
@@ -520,12 +563,16 @@ fi
 
 
 
+
+
+
+
 ##################################################################
-# FIXE
+# FIX
 ##################################################################
 
 #
-# CHECK IF A FIXE FILE IS PRESENT FOR THIS VERSION
+# CHECK IF A FIX SCRIPT IS PRESENT FOR THIS VERSION
 #
 
 
@@ -539,9 +586,9 @@ fi
 
 
 ##################################################################
-# CLEANNING
+# CLEANING
 ##################################################################
-echo -ne "$sup Cleanning "
+echo -ne "$sup Cleaning "
 rm /root/pandora-latest.tar.gz
 rm /root/pandora-latest.sum
 rm -rf /tmp/www
@@ -567,8 +614,8 @@ echo -ne "$bgdark                                                               
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
 echo -ne "$bgdark$fgcyan| | CONGRAGULATION !                                                                                       $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| | You have successfully installted Pandora Infinity.                                                     $reset\n"
-echo -ne "$bgdark$fgcyan| | Read the online documentation on redsword.io for the post-installation actions.                        $reset\n"
+echo -ne "$bgdark$fgcyan| | You have successfully installed Pandora Infinity.                                                      $reset\n"
+echo -ne "$bgdark$fgcyan| | Read the online documentation on https://redsword.io for the post-installation actions.                $reset\n"
 echo -ne "$bgdark$fgcyan| | Your are near the final steps.                                                                         $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
@@ -591,4 +638,42 @@ echo -ne "$bgdark$fggray""______________________________________________________
 echo ""
 echo "|-| Code Over - Done"
 
+echo "$(date +"%d/%m/%y %H:%M:%S") PANDORA INFINITY - EVOLUTION PROCESS TERMINATED" >> $LOGFILE
 exit
+
+
+
+##################################################################
+# COMPILE
+##################################################################
+echo "$(date +"%d/%m/%y %H:%M:%S") COMPILING " >> $LOGFILE
+
+# LIBCRAFTER
+echo -en "\n$sup Compiling libcrafter (very long step) "
+cd /var/lib/gitroot/libcrafter/libcrafter
+./autogen.sh >> $LOGFILE 2>&1
+make >> $LOGFILE 2>&1
+make install >> $LOGFILE 2>&1
+ldconfig
+echo -e $STATUS_OK
+
+
+##################################################################
+# CONFIG FILES
+##################################################################
+#
+cd /root
+
+
+##################################################################
+# FIXING
+##################################################################
+# FIXING Hamster-sidejack path
+echo -n "$sup Fixing Hamster-sidejack path "
+cp -p /usr/bin/ferret-sidejack /usr/lib/hamster-sidejack/ferret
+if [[ -e "/usr/lib/hamster-sidejack/ferret" ]]
+then
+        echo -e $STATUS_OK
+else
+        echo -e $STATUS_KO
+fi
