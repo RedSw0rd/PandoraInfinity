@@ -1,9 +1,12 @@
 #!/bin/bash
 ###################################################################
-# PANDORA INFINITY - REDSWORD CYBER SECURTY - EVOLUTION PROCESS SCRIPT
+# PANDORA INFINITY - EVOLUTION PROCESS SCRIPT
 ###################################################################
+
 # VAR
 DEP_LIST_URL="https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/pandora-infinity-deps.list"
+#PANDORA_ARCHIVE_URL="http://192.168.1.50/pandorainfinity/download/versions/latest/pandora-latest.tar.gz"
+#PANDORA_CHECKSUM_URL="http://192.168.1.50/pandorainfinity/download/versions/latest/pandora-latest.sum"
 PANDORA_ARCHIVE_URL="http://192.168.1.69/RedSword_dev/pandorainfinity/versions/pandora-latest.tar.gz"
 PANDORA_CHECKSUM_URL="http://192.168.1.69/RedSword_dev/pandorainfinity/versions/pandora-latest.sum"
 
@@ -360,9 +363,30 @@ fi
 
 
 #
-echo -ne "$sup Copying Apache VHost file "
+echo -ne "$sup Copying Apache vhost file "
 cp /var/lib/pandora/sys/setup/config/apache/pandora.conf /etc/apache2/sites-enabled/pandora.conf
 if [[ -e "/etc/apache2/sites-enabled/pandora.conf" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+
+##################################################################
+# INTERNAL CONFIG FILES
+##################################################################
+
+#
+echo -ne "$sup Copying config file "
+cp /var/lib/pandora/sys/setup/config/proxychains/* /var/lib/pandora/var/config/proxychains
+cp /var/lib/pandora/sys/setup/config/sqlmap/sqlmap.conf /var/lib/pandora/var/config/sqlmap/
+cp /var/lib/pandora/sys/setup/config/dnsspoof/dnsspoof.conf /var/lib/pandora/var/config/dnsspoof/
+cp /var/lib/pandora/sys/setup/config/dnschef/dnschef.ini /var/lib/pandora/var/config/dnschef/
+cp /var/lib/pandora/sys/setup/config/tor/torrc /var/lib/pandora/var/config/tor/
+cp /var/lib/pandora/sys/setup/config/hostapd/* /var/lib/pandora/var/config/hostapd/
+
+if [ -e "/var/lib/pandora/var/config/proxychains/proxychains-tcp.conf" ] && [ -e "/var/lib/pandora/var/config/sqlmap/sqlmap.conf" ] && [ -e "/var/lib/pandora/var/config/dnsspoof/dnsspoof.conf" ] && [ -e "/var/lib/pandora/var/config/dnschef/dnschef.ini" ] && [ -e "/var/lib/pandora/var/config/tor/torrc" ] && [ -e "/var/lib/pandora/var/config/hostapd/hostapd-evil.conf" ]
 then
         echo -e "$STATUS_OK"
 else
@@ -579,12 +603,6 @@ fi
 
 
 
-
-
-
-
-
-
 ##################################################################
 # CLEANING
 ##################################################################
@@ -623,7 +641,7 @@ echo -ne "$bgdark$fgcyan| | Informations :                                      
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
 echo -ne "$bgdark$fgcyan| | URL      : https://<IP>:31415                                                                          $reset\n"
 echo -ne "$bgdark$fgcyan| | Login    :$fgred Commander                                                                                   $reset\n"
-echo -ne "$bgdark$fgcyan| | Password :$fgred PandoraInfinity2024                                                                         $reset\n"
+echo -ne "$bgdark$fgcyan| | Password :$fgred P@nd0raInfinity                                                                             $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
 echo -ne "$bgdark$fgcyan| | Welcome in the Red Squad !                                                                             $reset\n"
