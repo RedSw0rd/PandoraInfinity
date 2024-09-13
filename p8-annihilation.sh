@@ -1,6 +1,6 @@
 #!/bin/bash
 ###################################################################
-# PANDORA INFINITY - REDSWORD CYBER SECURTY
+# PANDORA INFINITY - ANNIHILATION PROCESS SCRIPT
 ###################################################################
 
 #
@@ -21,23 +21,36 @@ fglightgray="\033[38;5;245m";
 bgpurple="\033[48;5;93m";
 bgcyan="\033[48;5;51m";
 bgdark="\033[48;5;233m";
+grad1="\033[38;5;213m";
+grad2="\033[38;5;207m";
+grad3="\033[38;5;147m";
+grad4="\033[38;5;051m";
+grad5="\033[38;5;045m";
+grad6="\033[38;5;123m";
 
-STATUS_OK="\r\t\t\t\t\t\t\t\t\t\t\t\t     $white[$green OK $white]$fglightgray"
-STATUS_KO="\r\t\t\t\t\t\t\t\t\t\t\t\t     $white[$red K0 $white]$fglightgray"
-T=$(date +"%d%m%y-%s")
+STATUS_OK="\r\t\t\t\t\t\t\t\t\t\t\t\t     $white[$green OK $white]$textColor"
+STATUS_KO="\r\t\t\t\t\t\t\t\t\t\t\t\t     $white[$red K0 $white]$textColor"
+textColor="$fglightgray";
+borderColor="$fgcyan";
+insideBorderColor="$lpurple"
+plus="$borderColor|$insideBorderColor""+""$borderColor|$textColor"
+minus="$borderColor|$insideBorderColor""-""$borderColor|$textColor"
+sup="$borderColor|$insideBorderColor"">""$borderColor|$textColor"
+warn="$borderColor|$insideBorderColor""!""$borderColor|$textColor"
+err="$borderColor|$insideBorderColor""E""$borderColor|$textColor"
 
 echo -ne "$fgcyan""___________________________________________________________________________________________________________\n"
 echo -ne "$bgpurple                                                                                                           $reset\n"
-echo -ne "$bgpurple$fgcyan                                    W E L C O M E    C O M M A N D E R                                     $reset\n"
+echo -ne "$bgpurple$fgcyan                                W E L C O M E    N E W   C H A L L E N G E R                               $reset\n"
 echo -ne "$bgpurple                                                                                                           $reset\n"
 echo ""
 echo ""
-echo -e "$purple  ______ _______ _______ ______  _______ ______  _______    _ _______ _______ _ _______ _ _______ _     _"
-echo -e "$lpurple (_____ (_______|_______|______)(_______|_____ \(_______)  | (_______|_______) (_______) (_______) |   | |"
-echo -e "  _____) )______ _     _ _     _ _     _ _____) )_______   | |_     _ _____  | |_     _| |   _   | |___| |"
-echo -e "$cyan |  ____/  ___  | |   | | |   | | |   | |  __  /|  ___  |  | | |   | |  ___) | | |   | | |  | |  |_____  |"
-echo -e " | |    | |   | | |   | | |__/ /| |___| | |  \ \| |   | |  | | |   | | |     | | |   | | |  | |   _____| |"
-echo -e "$lightcyan |_|    |_|   |_|_|   |_|_____/  \_____/|_|   \_|_|   |_|  |_|_|   |_|_|     |_|_|   |_|_|  |_|  (_______|"
+echo -e "$grad1  ______ _______ _______ ______  _______ ______  _______    _ _______ _______ _ _______ _ _______ _     _"
+echo -e "$grad2 (_____ (_______|_______|______)(_______|_____ \(_______)  | (_______|_______) (_______) (_______) |   | |"
+echo -e "$grad3  _____) )______ _     _ _     _ _     _ _____) )_______   | |_     _ _____  | |_     _| |   _   | |___| |"
+echo -e "$grad4 |  ____/  ___  | |   | | |   | | |   | |  __  /|  ___  |  | | |   | |  ___) | | |   | | |  | |  |_____  |"
+echo -e "$grad5 | |    | |   | | |   | | |__/ /| |___| | |  \ \| |   | |  | | |   | | |     | | |   | | |  | |   _____| |"
+echo -e "$grad6 |_|    |_|   |_|_|   |_|_____/  \_____/|_|   \_|_|   |_|  |_|_|   |_|_|     |_|_|   |_|_|  |_|  (_______|"
 echo ""
 echo -ne "$fggray""                ____________________________________________________________________________\n"
 echo ""
