@@ -64,33 +64,25 @@ echo -e "                   $fggray[$cyan \033[4mP\033[24m""$fggray""roactive $c
 echo ""
 echo ""
 echo ""
-echo -e "$fggray                                       .-=( Red|Sword - 2024 )=-."
+echo -e "$fggray                                        --={ Red|SWORD - 2024 }=--"
 echo ""
 echo ""
 echo -ne "$fgpurple2""___________________________________________________________________________________________________________\n"
 echo -ne "$bgcyan                                                                                                           $reset\n"
-echo -ne "$bgcyan$fgpurple1                      \033[5m E V O L U T I O N    P R O C E S S U S   -   S T A G E   1\033[25m                          $reset\n"
+echo -ne "$bgcyan$fgpurple1                        \033[5m E V O L U T I O N    P R O C E S S U S   -   S T A G E   1\033[25m                        $reset\n"
 echo -ne "$bgcyan                                                                                                           $reset\n"
 echo -ne "$bgdark                                                                                                           $reset\n"
-echo -ne "$bgdark                                                                                                           $reset\n"
-echo -ne "$bgdark$fgred                                            *** DICLAIMER ***                                              $reset\n"
-echo -ne "$bgdark                                                                                                           $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| | This project is created for educational purposes and cannot be used for law violation or personal      $reset\n"
-echo -ne "$bgdark$fgcyan| | gain.                                                                                                  $reset\n"
+echo -ne "$bgdark$fgcyan| | Welcome to the PANDORA INFINITY evolution process.                                                     $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| | The author of this project is not responsible for any possible harm caused by the materials of this    $reset\n"
-echo -ne "$bgdark$fgcyan| | project.                                                                                               $reset\n"
-echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
-echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
+echo -ne "$bgdark$fgcyan| | After several stages, your current pentesting environment will evolve into PANDORA INFINITY platform.  $reset\n"
+echo -ne "$bgdark$fgcyan| | Many changes will be made to your system.                                                              $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
 echo -ne "$bgdark                                                                                                           $reset\n"
 echo -ne "$bgdark$fggray""___________________________________________________________________________________________________________$reset\n"
 echo -e "$textColor"
 sleep 1
+
 echo "$(date +"%d/%m/%y %H:%M:%S") PANDORA INFINITY - EVOLUTION PROCESS STARTED" > $LOGFILE
 
 # ROOT CHECK
@@ -121,8 +113,10 @@ fi
 echo -ne "$sup Checking for previous installation "
 if [[ -e /var/www/pandora ]]
 then
-        echo -e "$STATUS_KO"
-        echo -e "$err Previous installation found. Please run the annihilation script before."
+        echo -e "$STATUS_OK"
+
+        #echo -e "$STATUS_KO"
+        #echo -e "$err Previous installation found. Please run the annihilation script before."
         #exit
 else
         echo -e "$STATUS_OK"
