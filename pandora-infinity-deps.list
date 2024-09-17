@@ -118,6 +118,7 @@ smtp-user-enum
 arping
 hping3
 nuclei
+openvas
 msfpc
 framework2
 metasploit-framework
