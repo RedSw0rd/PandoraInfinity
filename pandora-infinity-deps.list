@@ -30,6 +30,7 @@ libbluetooth-dev
 libnl-3-dev
 libnl-genl-3-dev
 libssl-dev
+atftpd
 tor
 tor-geoipdb
 ffmpeg
