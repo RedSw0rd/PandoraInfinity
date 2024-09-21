@@ -97,6 +97,7 @@ dhcpig
 bettercap
 mitm6
 mitmproxy
+recon-ng
 thc-ipv6
 crackmapexec
 smbclient
@@ -120,6 +121,7 @@ arping
 hping3
 nuclei
 openvas
+set
 msfpc
 framework2
 metasploit-framework
