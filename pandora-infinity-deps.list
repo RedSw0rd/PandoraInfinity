@@ -12,6 +12,7 @@ pkg-config
 libtool
 libpcap-dev
 locales
+bridge-utils
 php
 php-sqlite3
 php-curl
