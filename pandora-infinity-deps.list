@@ -127,6 +127,8 @@ framework2
 metasploit-framework
 powershell-empire
 routersploit
+hash-identifier
+hashid
 hydra
 crowbar
 dnschef
