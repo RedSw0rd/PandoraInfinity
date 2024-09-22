@@ -141,3 +141,4 @@ proxychains4
 openvpn
 rsync
 libimage-exiftool-perl
+mysqlshow
