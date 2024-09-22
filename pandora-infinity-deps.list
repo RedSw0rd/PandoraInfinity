@@ -144,3 +144,6 @@ libimage-exiftool-perl
 mysqlshow
 imagemagick
 ghostscript
+ethstatus
+iptraf-ng
+htop
