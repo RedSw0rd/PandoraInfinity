@@ -147,3 +147,5 @@ ghostscript
 ethstatus
 iptraf-ng
 htop
+atop
+bmon
