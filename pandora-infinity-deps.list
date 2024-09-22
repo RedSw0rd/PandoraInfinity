@@ -142,3 +142,5 @@ openvpn
 rsync
 libimage-exiftool-perl
 mysqlshow
+imagemagick
+ghostscript
