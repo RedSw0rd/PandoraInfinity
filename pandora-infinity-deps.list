@@ -24,6 +24,7 @@ python3-bluepy
 python3-pydbus
 python3-pcapy
 python3-impacket
+python3-venv
 impacket-scripts
 bluetooth
 bluez-tools
