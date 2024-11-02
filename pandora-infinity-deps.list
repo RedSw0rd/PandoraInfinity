@@ -142,6 +142,7 @@ joomscan
 dotdotpwn
 sqlmap
 cupp
+apache-users
 smtp-user-enum
 arping
 hping3
