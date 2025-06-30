@@ -54,7 +54,6 @@ macchanger
 sshpass
 rsync
 libimage-exiftool-perl
-mysqlshow
 imagemagick
 ghostscript
 ethstatus
