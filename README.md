@@ -1,6 +1,6 @@
 # Pandora Infinity
 
-Project Name : PANDORA INFINITY 
+Project Name : PANDORA INFINITY
 Codename : P.H.A.N.T.O.M
 
 Hi everybody,
