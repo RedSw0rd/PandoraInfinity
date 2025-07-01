@@ -4,19 +4,18 @@
 # EVOLUTION PROCESS SCRIPT - Stage 2
 #
 #
-#
-#
-#
-#
+# PANDORA VERSION   : 0.0.1.0
+# SCRIPT VERSION    : 0.0.1.0
+# OLLAMA VERSION    : Latest
+# MINICONDA VERSION : py313_25.5.1-0
 #
 #
 #
 
 # VAR
-DEP_LIST_URL="https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/pandora-infinity-deps.list"
 T=$(date +"%d%m%y-%s")
-LOGFILE="/root/Pandora-Infinity-stage2.log"
-scriptVersion="0.1.0"
+LOGFILE="/root/Pandora-Infinity-stage2-$T.log"
+scriptVersion="0.0.1.0"
 
 #
 reset="\033[0m";
@@ -271,6 +270,25 @@ else
         echo -e "$STATUS_KO"
 fi
 
+echo -ne "$textColor--> Crowbar "
+git clone --branch v4.2 --depth 1 --single-branch https://github.com/galkan/crowbar.git /opt/pandora/github/crowbar >> $LOGFILE 2>&1
+if [[ -e "/opt/pandora/github/crowbar" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+echo -ne "$textColor--> theHarvester "
+git clone --branch 4.8.0 --depth 1 --single-branch https://github.com/laramies/theHarvester.git /opt/pandora/github/theHarvester >> $LOGFILE 2>&1
+if [[ -e "/opt/pandora/github/theHarvester" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+
 
 #
 # OLLAMA
@@ -336,12 +354,11 @@ echo -e "$STATUS_OK"
 
 echo -e "$plus Creating autonomous python environments "
 echo -e "$(date +"%d/%m/%y %H:%M:%S") PYTHON ENV" >> $LOGFILE
-
 echo -ne "$plus Installing Miniconda "
 
 ARCH=$(uname -m)
-
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-${ARCH}.sh -O ./miniconda.sh >> $LOGFILE 2>&1
+MINICONDA_VERSION="py313_25.5.1-0"
+wget https://repo.anaconda.com/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-${ARCH}.sh -O ./miniconda.sh >> $LOGFILE 2>&1
 chmod +x ./miniconda.sh >> $LOGFILE 2>&1
 ./miniconda.sh -b -p /opt/miniconda3 >> $LOGFILE 2>&1
 /opt/miniconda3/bin/conda config --add channels conda-forge >> $LOGFILE 2>&1
@@ -622,10 +639,95 @@ else
         echo -e "$STATUS_KO"
 fi
 
+echo -ne "$textColor--> Dnschef "
+/opt/miniconda3/bin/conda create -y --name dnschef python=3.11 >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n dnschef pip install "dnschef-ng==0.7.2" >> $LOGFILE 2>&1
+if [[ -e "opt/miniconda3/envs/dnschef/bin/dnschef" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
 
-##################################################################
+echo -ne "$textColor--> Mitm6 "
+/opt/miniconda3/bin/conda create -y --name mitm6 python=3.11 >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n mitm6 pip install "mitm6==0.3.0" >> $LOGFILE 2>&1
+if [[ -e "/opt/miniconda3/envs/mitm6/bin/mitm6" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+echo -ne "$textColor--> LSASSY "
+/opt/miniconda3/bin/conda create -y --name lsassy python=3.11 >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n lsassy pip install "lsassy==3.1.13" >> $LOGFILE 2>&1
+if [[ -e " /opt/miniconda3/envs/lsassy/bin/lsassy" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+echo -ne "$textColor--> Cupp "
+/opt/miniconda3/bin/conda create -y --name cupp python=3.11 >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n cupp pip install "cupp==1.3.3" >> $LOGFILE 2>&1
+if [[ -e "/opt/miniconda3/envs/cupp/bin/cupp" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+echo -ne "$textColor--> Crowbar "
+/opt/miniconda3/bin/conda create -y --name crowbar python=3.10 >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n crowbar pip install "paramiko==2.7.1" >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n crowbar pip install six >> $LOGFILE 2>&1
+if [[ -e "/opt/pandora/github/crowbar/crowbar.py" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+echo -ne "$textColor--> theHarvester "
+/opt/miniconda3/bin/conda create -y --name theHarvester python=3.12 >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install netaddr >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install ujson >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install aiomultiprocess >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install aiohttp >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install certifi >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install PyYAML >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install censys >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install aiodns >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install bs4 >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install python-dateutil >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install shodan >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install aiosqlite >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install playwright  >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n theHarvester pip install uvloop  >> $LOGFILE 2>&1
+if [[ -e "/opt/miniconda3/envs/theHarvester/bin/python" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+echo -ne "$textColor--> Automate "
+/opt/miniconda3/bin/conda create -y --name automate python=3.13 >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n automate pip install netaddr >> $LOGFILE 2>&1
+if [[ -e "/opt/miniconda3/envs/automate/bin/python" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+
+
+#
 # END
-##################################################################
+#
 
 echo -ne "$fgpurple2___________________________________________________________________________________________________________\n"
 echo -ne "$bgcyan                                                                                                           $reset\n"
