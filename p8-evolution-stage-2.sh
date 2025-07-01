@@ -164,7 +164,7 @@ else
 fi
 
 echo -ne "$textColor--> Libcrafter "
-git clone https://github.com/pellegre/libcrafter /opt/pandora/github/libcrafter >> $LOGFILE 2>&1
+git clone --depth 1 --single-branch https://github.com/pellegre/libcrafter /opt/pandora/github/libcrafter >> $LOGFILE 2>&1
 if [[ -e "/opt/pandora/github/libcrafter" ]]
 then
         echo -e "$STATUS_OK"
