@@ -108,8 +108,8 @@ fi
 
 # OS CHECK
 echo -ne "$sup Checking if we are on Kali "
-OS=$(cat /etc/os-release | grep "^ID" | grep -v LIKE | cut -d'=' -f2)
-if [[ "$OS" -eq "kali" ]]
+source /etc/os-release
+if [[ "$ID" == "kali" ]]
 then
         echo -e "$STATUS_OK"
 else
@@ -315,7 +315,7 @@ echo "$(date +"%d/%m/%y %H:%M:%S") COMPILING " >> $LOGFILE
 
 # LIBCRAFTER
 echo -ne "$sup Compiling libcrafter (very long step) "
-cd /var/lib/gitroot/libcrafter/libcrafter
+cd /opt/pandora/github/libcrafter/libcrafter
 ./autogen.sh >> $LOGFILE 2>&1
 make >> $LOGFILE 2>&1
 #make install >> $LOGFILE 2>&1
