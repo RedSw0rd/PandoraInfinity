@@ -55,7 +55,7 @@ err="$borderColor|$insideBorderColor""E""$borderColor|$textColor"
 
 echo -ne "$fgcyan""___________________________________________________________________________________________________________\n"
 echo -ne "$bgpurple                                                                                                           $reset\n"
-echo -ne "$bgpurple$fgcyan                               W E L C O M E    N E W   C O M M A N D E R                                  $reset\n"
+echo -ne "$bgpurple$fgcyan                               W E L C O M E   N E W   C O M M A N D E R                                   $reset\n"
 echo -ne "$bgpurple                                                                                                           $reset\n"
 echo ""
 echo ""
@@ -644,7 +644,7 @@ fi
 echo -ne "$textColor--> Dnschef "
 /opt/miniconda3/bin/conda create -y --name dnschef python=3.11 >> $LOGFILE 2>&1
 /opt/miniconda3/bin/conda run -n dnschef pip install "dnschef-ng==0.7.2" >> $LOGFILE 2>&1
-if [[ -e "opt/miniconda3/envs/dnschef/bin/dnschef" ]]
+if [[ -e "/opt/miniconda3/envs/dnschef/bin/dnschef" ]]
 then
         echo -e "$STATUS_OK"
 else
@@ -664,7 +664,7 @@ fi
 echo -ne "$textColor--> LSASSY "
 /opt/miniconda3/bin/conda create -y --name lsassy python=3.11 >> $LOGFILE 2>&1
 /opt/miniconda3/bin/conda run -n lsassy pip install "lsassy==3.1.13" >> $LOGFILE 2>&1
-if [[ -e " /opt/miniconda3/envs/lsassy/bin/lsassy" ]]
+if [[ -e "/opt/miniconda3/envs/lsassy/bin/lsassy" ]]
 then
         echo -e "$STATUS_OK"
 else
