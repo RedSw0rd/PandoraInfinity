@@ -8,6 +8,7 @@ autopoint
 binutils-mingw-w64
 g++
 g++-mingw-w64-x86-64
+golang
 pkg-config
 libtool
 libcrafter
@@ -18,6 +19,8 @@ libbluetooth-dev
 libnl-3-dev
 libnl-genl-3-dev
 libssl-dev
+libsodium-dev
+cryptsetup
 locales
 bluetooth
 bluez-tools
@@ -111,8 +114,6 @@ ngrep
 cdpr
 p0f
 sslsplit
-ferret-sidejack
-hamster-sidejack
 dhcpig
 bettercap
 recon-ng
@@ -133,7 +134,6 @@ urlcrazy
 wpscan
 joomscan
 dotdotpwn
-cupp
 apache-users
 smtp-user-enum
 arping
@@ -148,7 +148,6 @@ powershell-empire
 routersploit
 hash-identifier
 hydra
-crowbar
 chisel
 ncat
 gr-gsm
