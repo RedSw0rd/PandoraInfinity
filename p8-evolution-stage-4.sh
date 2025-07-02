@@ -1,18 +1,31 @@
 #!/bin/bash
-###################################################################
-# PANDORA INFINITY - EVOLUTION PROCESS SCRIPT
-###################################################################
+#
+# PANDORA INFINITY
+# EVOLUTION PROCESS SCRIPT - Stage 4
+#
+#
+# PANDORA VERSION   : 0.0.1.0
+# SCRIPT VERSION    : 0.0.1.0
 
 # VAR
-DEP_LIST_URL="https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/main/pandora-infinity-deps.list"
 #PANDORA_ARCHIVE_URL="http://192.168.1.50/pandorainfinity/download/versions/latest/pandora-latest.tar.gz"
 #PANDORA_CHECKSUM_URL="http://192.168.1.50/pandorainfinity/download/versions/latest/pandora-latest.sum"
 PANDORA_ARCHIVE_URL="http://192.168.1.69/RedSword_dev/pandorainfinity/versions/pandora-latest.tar.gz"
 PANDORA_CHECKSUM_URL="http://192.168.1.69/RedSword_dev/pandorainfinity/versions/pandora-latest.sum"
+PANDORA_SIGNATURE_URL="http://192.168.1.69/RedSword_dev/pandorainfinity/versions/pandora-latest.sig"
+PANDORA_PUBLIC_KEY_URL="https://raw.githubusercontent.com/RedSw0rd/PandoraInfinity/refs/heads/main/pandora-infinity.pub"
+
+#
+CHARS='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>/?'
+MIN_RANDOM_LENGTH=6
+RANDOM_PART=$(head /dev/urandom | tr -dc "$CHARS" | head -c $((MIN_RANDOM_LENGTH + 8)))
+PASSWORD="pandora_${RANDOM_PART}"
+ARGON2ID_HASH=$(php -r "echo password_hash('$PASSWORD', PASSWORD_ARGON2ID);")
+
 
 T=$(date +"%d%m%y-%s")
-LOGFILE="/root/p8-evolution-stage-2-$T.log"
-scriptVersion="0.1.0"
+LOGFILE="/root/Pandora-Infinity-stage4-$T.log"
+scriptVersion="0.0.1.0"
 
 #
 reset="\033[0m";
@@ -50,9 +63,10 @@ sup="$borderColor|$insideBorderColor"">""$borderColor|$textColor"
 warn="$borderColor|$insideBorderColor""!""$borderColor|$textColor"
 err="$borderColor|$insideBorderColor""E""$borderColor|$textColor"
 
+
 echo -ne "$fgcyan""___________________________________________________________________________________________________________\n"
 echo -ne "$bgpurple                                                                                                           $reset\n"
-echo -ne "$bgpurple$fgcyan                                W E L C O M E    N E W   C H A L L E N G E R                               $reset\n"
+echo -ne "$bgpurple$fgcyan                               W E L C O M E   N E W   C O M M A N D E R                                   $reset\n"
 echo -ne "$bgpurple                                                                                                           $reset\n"
 echo ""
 echo ""
@@ -65,16 +79,16 @@ echo -e "$grad6 |_|    |_|   |_|_|   |_|_____/  \_____/|_|   \_|_|   |_|  |_|_| 
 echo ""
 echo -ne "$fggray""                ____________________________________________________________________________\n"
 echo ""
-echo -e "                  $fggray[$cyan \033[4mP\033[24m""$fggray""roactive $cyan \033[4mH\033[24m""$fggray""acking $cyan \033[4mA\033[24m""$fggray""nd $cyan \033[4mN\033[24m""$fggray""etwork $cyan \033[4mT\033[24m""$fggray""actical $cyan \033[4mO\033[24m""$fggray""perations $cyan \033[4mM\033[24m""$fggray""anagement ]"
+echo -e "                   $fggray[$cyan \033[4mP\033[24m""$fggray""roactive $cyan \033[4mH\033[24m""$fggray""acking $cyan \033[4mA\033[24m""$fggray""nd $cyan \033[4mN\033[24m""$fggray""etwork $cyan \033[4mT\033[24m""$fggray""actical $cyan \033[4mO\033[24m""$fggray""perations $cyan \033[4mM\033[24m""$fggray""anagement ]"
 echo ""
 echo ""
 echo ""
-echo -e "$fggray                                        --={ Red|SWORD - 2024 }=--"
+echo -e "$fggray                                   --=($fgred Red\033[1;37mSWORD$fglightgray|Security - 2025 $fggray)=--"
 echo ""
 echo ""
 echo -ne "$fgpurple2""___________________________________________________________________________________________________________\n"
 echo -ne "$bgcyan                                                                                                           $reset\n"
-echo -ne "$bgcyan$fgpurple1                        \033[5m E V O L U T I O N    P R O C E S S U S   -   S T A G E   2\033[25m                        $reset\n"
+echo -ne "$bgcyan$fgpurple1                        \033[5m E V O L U T I O N    P R O C E S S   -   S T A G E   4\033[25m                            $reset\n"
 echo -ne "$bgcyan                                                                                                           $reset\n"
 echo -ne "$bgdark                                                                                                           $reset\n"
 echo -ne "$bgdark                                                                                                           $reset\n"
@@ -107,14 +121,14 @@ then
         exit 1
 fi
 
-echo -e "$plus Loading Stage 2 - Engine version : $scriptVersion"
-echo -ne "$plus Stage 2 Evolution processus started at "
+echo -e "$plus Loading Stage 4 - Engine version : $scriptVersion"
+echo -ne "$plus Stage 4 Evolution processus started at "
 echo $(date +"%d/%m/%y %H:%M:%S")
 
 echo "$(date +"%d/%m/%y %H:%M:%S") PANDORA INFINITY - EVOLUTION PROCESS STARTED" > $LOGFILE
 
 # ROOT CHECK
-echo -ne "\n$sup Checking if we are r00t "
+echo -ne "\n$sup Checking if we are root "
 R=$(id -u)
 if [[ $R -eq 0 ]]
 then
@@ -178,6 +192,7 @@ else
 fi
 
 
+
 ###################################################################
 #
 ###################################################################
@@ -196,40 +211,49 @@ else
         exit
 fi
 
+echo -ne "$sup Downloading signature "
+rm pandora-latest.sig > /dev/null 2>&1
+wget $PANDORA_SIGNATURE_URL > /dev/null 2>&1
+if [[ -e "pandora-latest.sig" ]]
+then
+        echo -e "$STATUS_OK"
+        #SUM2=$(cat pandora-latest.sum)
+        #echo ">>> $SUM2 "
+else
+        echo -e "$STATUS_KO"
+        echo -e "$warn Signature file download failed. Check your connectivity and if the url is reacheable"
+        exit
+fi
+
+echo -ne "$sup Downloading public key "
+rm pandora-infinity.pub > /dev/null 2>&1
+wget $PANDORA_PUBLIC_KEY_URL > /dev/null 2>&1
+if [[ -e "pandora-infinity.pub" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+        echo -e "$warn Public key download failed. Check your connectivity and if the url is reacheable"
+        exit
+fi
+
+echo -ne "$sup Checking installation package signature"
+if openssl dgst -sha256 -verify pandora-infinity.pub -signature pandora-latest.sig pandora-latest.tar.gz >> $LOGFILE 2>&1
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+        echo -e "$warn Signature verification failed - Aborted"
+        exit
+fi
+
 echo -ne "$sup Generating checksum "
 SUM=$(sha256sum pandora-latest.tar.gz | awk '{print $1}')
 if [[ -z $SUM ]]
 then
-        echo -e "$STATUS_KO"
-else
-        echo -e "$STATUS_OK"
-        echo ">>> $SUM "
+        echo -e ">>> $SUM "
 fi
 
-echo -ne "$sup Downloading checksum "
-rm pandora-latest.sum > /dev/null 2>&1
-wget $PANDORA_CHECKSUM_URL > /dev/null 2>&1
-if [[ -e "pandora-latest.sum" ]]
-then
-        echo -e "$STATUS_OK"
-        SUM2=$(cat pandora-latest.sum)
-        echo ">>> $SUM2 "
-else
-        echo -e $"STATUS_KO"
-        echo -e "$warn Checksum file download failed. Check your connectivity and if the url is reacheable"
-        exit
-fi
-
-echo -ne "$sup Checking checksum "
-SUM2=$(cat pandora-latest.sum)
-if [[ "$SUM" == "$SUM2" ]]
-then
-        echo -e "$STATUS_OK"
-else
-        echo -e "$STATUS_KO"
-        echo -e "$warn Checksum comparaison failed. Please contact redsword cybersecurity to inform them"
-        #exit
-fi
 
 #
 echo -e "$plus$fgcyan Starting Evolution Process "
@@ -283,6 +307,20 @@ else
         exit
 fi
 
+##################################################################
+# INTEGRITY
+##################################################################
+
+
+
+
+
+
+
+
+
+
+
 
 ##################################################################
 # SYSTEM CONFIG FILES
@@ -333,14 +371,14 @@ fi
 
 
 # PLACING SUDO FILE
-echo -ne "$sup Copying sudo file "
-cp /var/lib/pandora/sys/setup/config/sudo/p8-www-root /etc/sudoers.d/p8-www-root
-if [[ -e "/etc/sudoers.d/p8-www-root" ]]
-then
-        echo -e "$STATUS_OK"
-else
-        echo -e "$STATUS_KO"
-fi
+#echo -ne "$sup Copying sudo file "
+#cp /var/lib/pandora/sys/setup/config/sudo/p8-www-root /etc/sudoers.d/p8-www-root
+#if [[ -e "/etc/sudoers.d/p8-www-root" ]]
+#then
+#        echo -e "$STATUS_OK"
+#else
+#        echo -e "$STATUS_KO"
+#fi
 
 
 # APACHE CONFIG
@@ -489,7 +527,7 @@ fi
 
 
 ##################################################################
-#
+# PERMS
 ##################################################################
 
 echo -ne "$sup Setting owner to www-data "
@@ -501,6 +539,17 @@ echo -e "$STATUS_OK"
 echo -ne "$sup Changing file mode "
 find /var/www/pandora -type d -exec chmod 0711 {} \;
 find /var/www/pandora -type f -exec chmod 0644 {} \;
+
+
+find /var/www/pandora -type f -exec chmod 0600 {} \;
+
+
+find /var/www/pandora/sys -type f -name "*.php" -exec chmod 0600 {} \;
+find /var/www/pandora/sys -type d -exec chmod 0700 {} \;
+find /var/www/pandora/pro -type d -exec chmod 0700 {} \;
+
+
+
 echo -e "$STATUS_OK"
 
 #echo -ne "$sup Disabling the Windows Manager (GUI) "
@@ -571,14 +620,18 @@ else
         echo -e "$STATUS_KO"
 fi
 
+echo -ne "$textColor""--> headers "
+a2enmod headers >> $LOGFILE 2>&1
+if [[ -e "/etc/apache2/mods-enabled/headers.load" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
 
-##################################################################
-# MISC
-##################################################################
-# CHECK ROOT PRIV
-echo -ne "$sup Checking if www-data have root privilege via sudo "
-P=$(sudo -u www-data sudo -n id -u 2>/dev/null)
-if [[ "$P" == "0" ]]
+echo -ne "$textColor""--> lua "
+a2enmod lua >> $LOGFILE 2>&1
+if [[ -e "/etc/apache2/mods-enabled/lua.load" ]]
 then
         echo -e "$STATUS_OK"
 else
@@ -586,7 +639,67 @@ else
 fi
 
 
+##################################################################
+# MISC
+##################################################################
+# CHECK ROOT PRIV
+#echo -ne "$sup Checking if www-data have root privilege via sudo "
+#P=$(sudo -u www-data sudo -n id -u 2>/dev/null)
+#if [[ "$P" == "0" ]]
+#then
+#        echo -e "$STATUS_OK"
+#else
+#        echo -e "$STATUS_KO"
+#fi
 
+
+
+##################################################################
+# VAULT
+##################################################################
+
+echo -e "$plus Creating Vaults "
+
+VAULT_PASSWORD=$(echo -n "$PASSWORD" | sha512sum | awk '{ print $1}')
+
+VAULT_IMG="/var/lib/pandora/vaults/pandoraVaultContainer.img"
+VAULT_NAME="pandoraVault"
+MOUNT_POINT="/run/pandora/pandoraVault"
+
+
+dd if=/dev/zero of=$VAULT_IMG bs=1M count=100 >> $LOGFILE 2>&1
+chown www-data: $VAULT_IMG >> $LOGFILE 2>&1
+chmod 600 $VAULT_IMG >> $LOGFILE 2>&1
+echo -n "$VAULT_PASSWORD" | cryptsetup luksFormat $VAULT_IMG -d - >> $LOGFILE 2>&1
+echo -n "$VAULT_PASSWORD" | cryptsetup luksOpen $VAULT_IMG $VAULT_NAME -d - >> $LOGFILE 2>&1
+mkfs.ext4 /dev/mapper/$VAULT_NAME >> $LOGFILE 2>&1
+mkdir -p $MOUNT_POINT >> $LOGFILE 2>&1
+mount /dev/mapper/$VAULT_NAME $MOUNT_POINT >> $LOGFILE 2>&1
+umount $MOUNT_POINT >> $LOGFILE 2>&1
+cryptsetup luksClose $VAULT_NAME >> $LOGFILE 2>&1
+
+
+VAULT_IMG="/var/lib/pandora/vaults/pandoraCommanderVaultContainer.img"
+VAULT_NAME="pandoraCommanderVault"
+MOUNT_POINT="/run/pandora/pandoraCommanderVault"
+
+dd if=/dev/zero of=$VAULT_IMG bs=1M count=1024 >> $LOGFILE 2>&1
+chown www-data: $VAULT_IMG >> $LOGFILE 2>&1
+chmod 600 $VAULT_IMG >> $LOGFILE 2>&1
+echo -n "$VAULT_PASSWORD" | cryptsetup luksFormat $VAULT_IMG -d - >> $LOGFILE 2>&1
+echo -n "$VAULT_PASSWORD" | cryptsetup luksOpen $VAULT_IMG $VAULT_NAME -d - >> $LOGFILE 2>&1
+mkfs.ext4 /dev/mapper/$VAULT_NAME >> $LOGFILE 2>&1
+mkdir -p $MOUNT_POINT >> $LOGFILE 2>&1
+mount /dev/mapper/$VAULT_NAME $MOUNT_POINT >> $LOGFILE 2>&1
+umount $MOUNT_POINT >> $LOGFILE 2>&1
+cryptsetup luksClose $VAULT_NAME >> $LOGFILE 2>&1
+
+
+##################################################################
+# DEFAULT PASSWORD
+##################################################################
+echo -e "$plus Updating the password hash "
+sqlite3 /var/lib/pandora/db/system/account.db "UPDATE PANDORA_ACCOUNT SET PASSWORDHASH = '$ARGON2ID_HASH' WHERE ID = 1;"
 
 
 
@@ -608,7 +721,8 @@ fi
 ##################################################################
 echo -ne "$sup Cleaning "
 rm /root/pandora-latest.tar.gz
-rm /root/pandora-latest.sum
+rm /root/pandora-latest.sig
+rm /root/pandora-infinity.pub
 rm -rf /tmp/www
 rm -rf /tmp/lib
 if [[ ! -e "/tmp/pandora" ]]
@@ -625,7 +739,7 @@ fi
 
 echo -ne "$fgpurple2___________________________________________________________________________________________________________\n"
 echo -ne "$bgcyan                                                                                                           $reset\n"
-echo -ne "$bgcyan$fgpurple1                                  \033[5m S T A G E   2   C O M P L E T E D \033[25m                                      $reset\n"
+echo -ne "$bgcyan$fgpurple1                                  \033[5m S T A G E   4   C O M P L E T E D \033[25m                                      $reset\n"
 echo -ne "$bgcyan                                                                                                           $reset\n"
 
 echo -ne "$bgdark                                                                                                           $reset\n"
@@ -641,7 +755,7 @@ echo -ne "$bgdark$fgcyan| | Informations :                                      
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
 echo -ne "$bgdark$fgcyan| | URL      : https://<IP>:31415                                                                          $reset\n"
 echo -ne "$bgdark$fgcyan| | Login    :$fgred Commander                                                                                   $reset\n"
-echo -ne "$bgdark$fgcyan| | Password :$fgred P@nd0raInfinity                                                                             $reset\n"
+echo -ne "$bgdark$fgcyan| | Password :$fgred $PASSWORD                                                                                        $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
 echo -ne "$bgdark$fgcyan| |                                                                                                        $reset\n"
 echo -ne "$bgdark$fgcyan| | Welcome in the Red Squad !                                                                             $reset\n"
