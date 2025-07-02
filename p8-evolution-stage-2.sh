@@ -289,7 +289,6 @@ else
 fi
 
 
-
 #
 # OLLAMA
 #
@@ -301,15 +300,18 @@ fi
 #
 #
 
+echo -e "$plus Creating AI powered platform "
+echo -e "$(date +"%d/%m/%y %H:%M:%S") OLLAMA" >> $LOGFILE
+echo -ne "$plus Installing Ollama "
 
+curl -fsSL https://ollama.com/install.sh | sh >> $LOGFILE 2>&1
 
-
-
-
-
-
-
-
+if systemctl is-active --quiet ollama
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
 
 
 
