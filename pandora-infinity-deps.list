@@ -139,6 +139,7 @@ urlcrazy
 wpscan
 joomscan
 dotdotpwn
+enum4linux-ng
 apache-users
 smtp-user-enum
 arping
