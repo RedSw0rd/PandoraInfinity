@@ -691,9 +691,11 @@ sqlite3 /var/lib/pandora/db/system/account.db "UPDATE PANDORA_ACCOUNT SET PASSWO
 echo -e "$plus Installing PHANTOM:SHELL "
 
 gcc /var/lib/pandora/sys/root/src/phantom-shell-access.c -o /var/lib/pandora/sys/root/bin/phantom-shell-access -lsqlite3 -lsodium
+chmod 0551 /var/lib/pandora/sys/root/bin/phantom-shell-access
 chmod u+s /var/lib/pandora/sys/root/bin/phantom-shell-access
 
 gcc phantom-shell-exec.c -o /var/lib/pandora/sys/root/bin/phantom-shell-exec
+chmod 0551 /var/lib/pandora/sys/root/bin/phantom-shell-exec
 chmod u+s /var/lib/pandora/sys/root/bin/phantom-shell-exec
 
 
