@@ -131,6 +131,7 @@ nikto
 whatweb
 dirb
 gobuster
+gospider
 sslyze
 httping
 httrack
