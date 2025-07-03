@@ -22,7 +22,7 @@ RANDOM_PART=$(head /dev/urandom | tr -dc "$CHARS" | head -c $((MIN_RANDOM_LENGTH
 PASSWORD="pandora_${RANDOM_PART}"
 ARGON2ID_HASH=$(php -r "echo password_hash('$PASSWORD', PASSWORD_ARGON2ID);")
 
-
+#
 T=$(date +"%d%m%y-%s")
 LOGFILE="/root/Pandora-Infinity-stage4-$T.log"
 scriptVersion="0.0.1.0"
@@ -370,17 +370,6 @@ else
 fi
 
 
-# PLACING SUDO FILE
-#echo -ne "$sup Copying sudo file "
-#cp /var/lib/pandora/sys/setup/config/sudo/p8-www-root /etc/sudoers.d/p8-www-root
-#if [[ -e "/etc/sudoers.d/p8-www-root" ]]
-#then
-#        echo -e "$STATUS_OK"
-#else
-#        echo -e "$STATUS_KO"
-#fi
-
-
 # APACHE CONFIG
 echo -ne "$sup Modifying /etc/apache2/ports.conf file "
 cp /etc/apache2/ports.conf /var/lib/pandora/var/backup/ports.conf
@@ -395,9 +384,9 @@ fi
 
 
 # REMOVING DEFAULT APACHE CONFIG FILE
-#echo -n "$sup Removing Apache 000-default.conf file "
-#rm /etc/apache2/sites-enabled/000-default.conf
-#echo -e $STATUS_OK
+echo -n "$sup Removing Apache 000-default.conf file "
+rm /etc/apache2/sites-enabled/000-default.conf
+echo -e $STATUS_OK
 
 
 #
@@ -450,6 +439,7 @@ fi
 ##################################################################
 # SQLITE DATABASE
 ##################################################################
+
 echo -ne "$sup Installing DB. Please wait "
 find /var/lib/pandora/sys/setup/config/sqlite/ -type f -name "*.php" -exec php -f {} \; >$LOGFILE 2>&1
 echo -e "$STATUS_OK"
@@ -533,21 +523,22 @@ fi
 echo -ne "$sup Setting owner to www-data "
 chown -R www-data: /var/www/pandora
 chown -R www-data: /var/lib/pandora
-find /var/lib/pandora/sys/scripts/pandora -type f -name "*.sh" -exec chmod +x {} \;
 echo -e "$STATUS_OK"
 
 echo -ne "$sup Changing file mode "
-find /var/www/pandora -type d -exec chmod 0711 {} \;
-find /var/www/pandora -type f -exec chmod 0644 {} \;
-
-
-find /var/www/pandora -type f -exec chmod 0600 {} \;
-
-
-find /var/www/pandora/sys -type f -name "*.php" -exec chmod 0600 {} \;
-find /var/www/pandora/sys -type d -exec chmod 0700 {} \;
+find /var/www/pandora -type f -exec chmod 0400 {} \;
+find /var/www/pandora/sys -type f -name "*.php" -exec chmod 0400 {} \;
+find /var/www/pandora/sys -type d -exec chmod 0500 {} \;
 find /var/www/pandora/pro -type d -exec chmod 0700 {} \;
+find /var/www/pandora/usr -type d -exec chmod 0700 {} \;
 
+find /var/lib/pandora/sys/scripts/pandora -type f -name "*.sh" -exec chmod +x {} \;
+chmod 0600 /var/spool/cron/crontabs/root
+chmod 0400 /var/lib/pandora/var/certs/pandora/pdr.key
+chown root: /var/lib/pandora/var/certs/pandora/pdr.key
+
+# FIX
+chmod 0777 /var/lib/pandora/log/netcap
 
 
 echo -e "$STATUS_OK"
@@ -640,21 +631,6 @@ fi
 
 
 ##################################################################
-# MISC
-##################################################################
-# CHECK ROOT PRIV
-#echo -ne "$sup Checking if www-data have root privilege via sudo "
-#P=$(sudo -u www-data sudo -n id -u 2>/dev/null)
-#if [[ "$P" == "0" ]]
-#then
-#        echo -e "$STATUS_OK"
-#else
-#        echo -e "$STATUS_KO"
-#fi
-
-
-
-##################################################################
 # VAULT
 ##################################################################
 
@@ -698,10 +674,50 @@ cryptsetup luksClose $VAULT_NAME >> $LOGFILE 2>&1
 ##################################################################
 # DEFAULT PASSWORD
 ##################################################################
+
 echo -e "$plus Updating the password hash "
 sqlite3 /var/lib/pandora/db/system/account.db "UPDATE PANDORA_ACCOUNT SET PASSWORDHASH = '$ARGON2ID_HASH' WHERE ID = 1;"
 
 
+##################################################################
+# PHANTOM::SHELL
+##################################################################
+
+echo -e "$plus Installing PHANTOM:SHELL "
+
+gcc /var/lib/pandora/sys/root/src/phantom-shell-access.c -o /var/lib/pandora/sys/root/bin/phantom-shell-access -lsqlite3 -lsodium
+chmod u+s /var/lib/pandora/sys/root/bin/phantom-shell-access
+
+gcc phantom-shell-exec.c -o /var/lib/pandora/sys/root/bin/phantom-shell-exec
+chmod u+s /var/lib/pandora/sys/root/bin/phantom-shell-exec
+
+
+##################################################################
+# INTEGRITY XML BASE
+##################################################################
+
+echo -e "$plus Creating Integrity base "
+
+echo '<?xml version="1.0" encoding="UTF-8"?><files>' > /var/lib/pandora/sys/root/var/file_reference.xml
+find /var/www/pandora -type f -name "*.php" -exec md5sum {} + | awk 'BEGIN { OFS="" } { gsub(/&/,"&amp;",$2); gsub(/</,"&lt;",$2); gsub(/>/,"&gt;",$2); gsub(/"/,"&quot;",$2); gsub(/\x27/,"&apos;",$2); print "<file path=\"" , $2 , "\" md5=\"" , $1 , "\" />" }' >> /var/lib/pandora/sys/root/var/file_reference.xml
+echo '</files>' >> /var/lib/pandora/sys/root/var/file_reference.xml
+
+find /var/www/pandora/ -type f ! -path "/var/www/pandora/usr/res/image/*" -printf '<file path="%p"/>\n' | awk 'BEGIN{print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<files>"} {print} END{print "</files>"}' > /var/lib/pandora/sys/root/var/file_list_reference.xml
+
+chmod 0644 /var/lib/pandora/sys/root/var/file_reference.xml
+chmod 0644 /var/lib/pandora/sys/root/var/file_list_reference.xml
+chown root: /var/lib/pandora/sys/root/var/file_reference.xml
+chown root: /var/lib/pandora/sys/root/var/file_list_reference.xml
+
+
+##################################################################
+# TIMEZONE
+##################################################################
+
+echo -e "$plus Creating internal timzone file "
+
+timedatectl show --property=Timezone --value > /var/lib/pandora/var/config/timezone/timezone
+chown www-data: /var/lib/pandora/var/config/timezone/timezone
 
 
 ##################################################################
@@ -711,6 +727,7 @@ sqlite3 /var/lib/pandora/db/system/account.db "UPDATE PANDORA_ACCOUNT SET PASSWO
 #
 # CHECK IF A FIX SCRIPT IS PRESENT FOR THIS VERSION
 #
+
 
 
 
