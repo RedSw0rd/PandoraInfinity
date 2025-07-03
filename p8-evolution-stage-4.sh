@@ -400,12 +400,17 @@ else
 fi
 
 
+#
+cp /var/lib/pandora/sys/setup/config/network/disable-mac-randomization.conf /etc/NetworkManager/conf.d/
+
+
 ##################################################################
 # INTERNAL CONFIG FILES
 ##################################################################
 
 #
 echo -ne "$sup Copying config file "
+cp /var/lib/pandora/sys/setup/config/network/disable-mac-randomization.conf /etc/NetworkManager/conf.d/
 cp /var/lib/pandora/sys/setup/config/proxychains/* /var/lib/pandora/var/config/proxychains
 cp /var/lib/pandora/sys/setup/config/sqlmap/sqlmap.conf /var/lib/pandora/var/config/sqlmap/
 cp /var/lib/pandora/sys/setup/config/dnsspoof/dnsspoof.conf /var/lib/pandora/var/config/dnsspoof/
