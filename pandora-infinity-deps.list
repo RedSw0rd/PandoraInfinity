@@ -57,6 +57,9 @@ dnsmasq
 macchanger
 sshpass
 rsync
+x11vnc
+novnc
+websockify
 libimage-exiftool-perl
 imagemagick
 ghostscript
