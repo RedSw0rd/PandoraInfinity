@@ -173,6 +173,7 @@ fi
 
 echo -ne "$textColor--> Responder "
 git clone --branch v3.1.6.0 --depth 1 --single-branch https://github.com/lgandx/Responder.git /opt/pandora/github/Responder >> $LOGFILE 2>&1
+(cd /opt/pandora/github/Responder/ && /opt/pandora/github/Responder/certs/gen-self-signed-cert.sh)
 if [[ -e "/opt/pandora/github/Responder" ]]
 then
         echo -e "$STATUS_OK"
@@ -282,6 +283,33 @@ fi
 echo -ne "$textColor--> theHarvester "
 git clone --branch 4.8.0 --depth 1 --single-branch https://github.com/laramies/theHarvester.git /opt/pandora/github/theHarvester >> $LOGFILE 2>&1
 if [[ -e "/opt/pandora/github/theHarvester" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+echo -ne "$textColor--> Dnschef "
+git clone --depth 1 --single-branch https://github.com/iphelix/dnschef /opt/pandora/github/dnschef >> $LOGFILE 2>&1
+if [[ -e "/opt/pandora/github/theHarvester" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+echo -ne "$textColor--> Username-anarchy "
+git clone --depth 1 --single-branch https://github.com/urbanadventurer/username-anarchy.git /opt/pandora/github/username-anarchy >> $LOGFILE 2>&1
+if [[ -e "/opt/pandora/github/theHarvester" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
+
+echo -ne "$textColor--> Humble "
+git clone --branch 1.50 --depth 1 --single-branch https://github.com/rfc-st/humble.git /opt/pandora/github/humble >> $LOGFILE 2>&1
+if [[ -e "/opt/pandora/github/humble" ]]
 then
         echo -e "$STATUS_OK"
 else
@@ -630,10 +658,10 @@ else
 fi
 
 echo -ne "$textColor--> PRET "
-/opt/miniconda3/bin/conda create -y --name PRET python=3.11 >> $LOGFILE 2>&1
-/opt/miniconda3/bin/conda run -n PRET pip install pysnmp >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda create -y --name PRET python=3.10 >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n PRET pip install "pyasn1==0.4.8" >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n PRET pip install "pysnmp==4.4.12" >> $LOGFILE 2>&1
 /opt/miniconda3/bin/conda run -n PRET pip install colorama >> $LOGFILE 2>&1
-/opt/miniconda3/bin/conda run -n PRET pip install requests >> $LOGFILE 2>&1
 if [[ -e "/opt/miniconda3/envs/PRET/bin/python" ]]
 then
         echo -e "$STATUS_OK"
@@ -642,9 +670,9 @@ else
 fi
 
 echo -ne "$textColor--> Dnschef "
-/opt/miniconda3/bin/conda create -y --name dnschef python=3.11 >> $LOGFILE 2>&1
-/opt/miniconda3/bin/conda run -n dnschef pip install "dnschef-ng==0.7.2" >> $LOGFILE 2>&1
-if [[ -e "/opt/miniconda3/envs/dnschef/bin/dnschef" ]]
+/opt/miniconda3/bin/conda create -y --name dnschef python=3.10 >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n dnschef pip install dnslib >> $LOGFILE 2>&1
+if [[ -e "/opt/miniconda3/envs/dnschef/bin/python" ]]
 then
         echo -e "$STATUS_OK"
 else
@@ -715,7 +743,7 @@ else
         echo -e "$STATUS_KO"
 fi
 
-echo -ne "$textColor--> Automate "
+echo -ne "$textColor--> Humble "
 /opt/miniconda3/bin/conda create -y --name automate python=3.13 >> $LOGFILE 2>&1
 /opt/miniconda3/bin/conda run -n automate pip install netaddr >> $LOGFILE 2>&1
 if [[ -e "/opt/miniconda3/envs/automate/bin/python" ]]
@@ -725,7 +753,17 @@ else
         echo -e "$STATUS_KO"
 fi
 
-
+echo -ne "$textColor--> Automate "
+/opt/miniconda3/bin/conda create -y --name humble python=3.12 >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n humble pip install colorama >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n humble pip install requests >> $LOGFILE 2>&1
+/opt/miniconda3/bin/conda run -n humble pip install tldextract >> $LOGFILE 2>&1
+if [[ -e "/opt/miniconda3/envs/humble/bin/python" ]]
+then
+        echo -e "$STATUS_OK"
+else
+        echo -e "$STATUS_KO"
+fi
 
 #
 # END
