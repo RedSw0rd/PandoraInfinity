@@ -17,8 +17,7 @@ PANDORA_PUBLIC_KEY_URL="https://raw.githubusercontent.com/RedSw0rd/PandoraInfini
 
 #
 CHARS='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>/?'
-MIN_RANDOM_LENGTH=6
-RANDOM_PART=$(head /dev/urandom | tr -dc "$CHARS" | head -c $((MIN_RANDOM_LENGTH + 8)))
+RANDOM_PART=$(head /dev/urandom | tr -dc "$CHARS" | head -c 6)
 PASSWORD="pandora_${RANDOM_PART}"
 ARGON2ID_HASH=$(php -r "echo password_hash('$PASSWORD', PASSWORD_ARGON2ID);")
 
@@ -522,12 +521,34 @@ fi
 
 
 ##################################################################
+# SOUNDS
+##################################################################
+
+cp /var/lib/pandora/sys/setup/sound/bootstrap.wav /var/www/pandora/usr/sounds/bootstrap/
+cp /var/lib/pandora/sys/setup/sound/codeover.wav /var/www/pandora/usr/sounds/codeover/
+cp /var/lib/pandora/sys/setup/sound/delete.wav /var/www/pandora/usr/sounds/delete/
+cp /var/lib/pandora/sys/setup/sound/incoming.wav /var/www/pandora/usr/sounds/incoming/
+cp /var/lib/pandora/sys/setup/sound/logoff.wav /var/www/pandora/usr/sounds/logoff/
+cp /var/lib/pandora/sys/setup/sound/navigation.wav /var/www/pandora/usr/sounds/navigation/
+cp /var/lib/pandora/sys/setup/sound/panel.wav /var/www/pandora/usr/sounds/panel/
+cp /var/lib/pandora/sys/setup/sound/screensaver.wav /var/www/pandora/usr/sounds/screensaver/
+cp /var/lib/pandora/sys/setup/sound/target.wav /var/www/pandora/usr/sounds/target/
+cp /var/lib/pandora/sys/setup/sound/unitstart.wav /var/www/pandora/usr/sounds/unitstart/
+cp /var/lib/pandora/sys/setup/sound/welcome.wav /var/www/pandora/usr/sounds/welcome/
+
+
+##################################################################
 # PERMS
 ##################################################################
 
 echo -ne "$sup Setting owner to www-data "
 chown -R www-data: /var/www/pandora
 chown -R www-data: /var/lib/pandora
+chown -R www-data: /opt/pandora
+chmod 0700 /opt/pandora
+chmod 0700 /var/lib/pandora
+chmod 0700 /var/www/pandora
+chmod 0700 /var/www/pandora/usr
 echo -e "$STATUS_OK"
 
 echo -ne "$sup Changing file mode "
@@ -537,14 +558,19 @@ find /var/www/pandora/sys -type d -exec chmod 0500 {} \;
 find /var/www/pandora/pro -type d -exec chmod 0700 {} \;
 find /var/www/pandora/usr -type d -exec chmod 0700 {} \;
 
+#
+find /var/lib/pandora -type d -exec chmod 0700 {} \;
+
+#
 find /var/lib/pandora/sys/scripts/pandora -type f -name "*.sh" -exec chmod +x {} \;
+
+#
 chmod 0600 /var/spool/cron/crontabs/root
 chmod 0400 /var/lib/pandora/var/certs/pandora/pdr.key
 chown root: /var/lib/pandora/var/certs/pandora/pdr.key
 
 # FIX
 chmod 0777 /var/lib/pandora/log/netcap
-
 
 echo -e "$STATUS_OK"
 
