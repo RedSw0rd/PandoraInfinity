@@ -162,15 +162,6 @@ else
         fi
 fi
 
-echo -ne "$textColor--> Libcrafter "
-git clone --depth 1 --single-branch https://github.com/pellegre/libcrafter /opt/pandora/github/libcrafter >> $LOGFILE 2>&1
-if [[ -e "/opt/pandora/github/libcrafter" ]]
-then
-        echo -e "$STATUS_OK"
-else
-        echo -e "$STATUS_KO"
-fi
-
 echo -ne "$textColor--> Responder "
 git clone --branch v3.1.6.0 --depth 1 --single-branch https://github.com/lgandx/Responder.git /opt/pandora/github/Responder >> $LOGFILE 2>&1
 (cd /opt/pandora/github/Responder/ && /opt/pandora/github/Responder/certs/gen-self-signed-cert.sh)
@@ -342,11 +333,6 @@ else
 fi
 
 
-
-
-
-
-
 #
 # COMPILE
 #
@@ -358,17 +344,8 @@ fi
 #
 #
 
-echo -e "$plus Code compilation time "
-echo "$(date +"%d/%m/%y %H:%M:%S") COMPILING " >> $LOGFILE
-
-# LIBCRAFTER
-echo -ne "$sup Compiling libcrafter (very long step) "
-cd /opt/pandora/github/libcrafter/libcrafter
-./autogen.sh >> $LOGFILE 2>&1
-make >> $LOGFILE 2>&1
-#make install >> $LOGFILE 2>&1
-#ldconfig
-echo -e "$STATUS_OK"
+#echo -e "$plus Code compilation time "
+#echo "$(date +"%d/%m/%y %H:%M:%S") COMPILING " >> $LOGFILE
 
 
 #
